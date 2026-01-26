@@ -34,7 +34,7 @@ jobs:
       # --- 1. THE CONTROL GROUP (Safety Check) ---
       - name: 🧪 1. Run Pip Baseline (Initial State)
         id: pip_initial
-        continue-on-error: false # This MUST pass to prove the experiment is valid
+        continue-on-error: false 
         run: |
           echo "========================================"
           echo "STEP 1: Verify Initial Pinned Requirements"
@@ -43,20 +43,23 @@ jobs:
           python -m venv baseline_env
           source baseline_env/bin/activate
           
-          # 1. Install SAFE requirements (Gym 0.19/0.21)
-          # We use --extra-index-url to pull CPU binaries and save space
+          # FIX: Downgrade build tools so Gym 0.21.0 can install
+          echo "--> Downgrading setuptools for legacy compatibility..."
+          pip install "setuptools<60.0.0" wheel
+          
+          # 1. Install SAFE requirements
           pip install -r requirements.txt
           
-          # 2. Install the Project (Critical for SB3 imports)
+          # 2. Install the Project
           pip install -e .
           
           echo "--> Running Validation on Safe State..."
-          python validation_sbl3.py
+          python validation_rl.py
           
           echo "RESULT: INITIAL STATE IS VALID ✅"
           deactivate
           rm -rf baseline_env
-
+          
       # --- 2. THE ATTACK (Simulate 'Pip Upgrade') ---
       - name: 💥 2. Run Pip Upgrade (The Breakage Test)
         id: pip_upgrade
