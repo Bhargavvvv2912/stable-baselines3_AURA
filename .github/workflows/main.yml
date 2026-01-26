@@ -54,12 +54,12 @@ jobs:
           pip install -e .
           
           echo "--> Running Validation on Safe State..."
-          python validation_rl.py
+          python validation_sbl3.py
           
           echo "RESULT: INITIAL STATE IS VALID ✅"
           deactivate
           rm -rf baseline_env
-          
+
       # --- 2. THE ATTACK (Simulate 'Pip Upgrade') ---
       - name: 💥 2. Run Pip Upgrade (The Breakage Test)
         id: pip_upgrade
@@ -83,7 +83,7 @@ jobs:
           echo "--> Running Validation on Upgraded State..."
           # This script checks for 4 return values. Gym 0.26 returns 5.
           # THIS SHOULD CRASH.
-          python validation_rl.py
+          python validation_sbl3.py
           
           # If we get here, Pip accidentally worked (Bad for experiment)
           echo "RESULT: PIP UPGRADE PASSED (Unexpected?)"
