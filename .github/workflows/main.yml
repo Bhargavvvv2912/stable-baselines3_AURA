@@ -63,7 +63,7 @@ jobs:
           pip install -e .
           
           echo "--> Running Validation on Safe State..."
-          python validation_rl.py
+          python validation_sbl3.py
           
           echo "RESULT: INITIAL STATE IS VALID ✅"
           deactivate
