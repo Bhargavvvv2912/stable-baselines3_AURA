@@ -32,9 +32,10 @@ jobs:
           python -m pip install google-genai google-api-core pypi-simple packaging pip-tools
 
       # --- 1. THE CONTROL GROUP (Safety Check) ---
+      # --- 1. THE CONTROL GROUP (Safety Check) ---
       - name: 🧪 1. Run Pip Baseline (Initial State)
         id: pip_initial
-        continue-on-error: false 
+        continue-on-error: false
         run: |
           echo "========================================"
           echo "STEP 1: Verify Initial Pinned Requirements"
@@ -43,11 +44,8 @@ jobs:
           python -m venv baseline_env
           source baseline_env/bin/activate
           
-          # FIX: Downgrade build tools so Gym 0.21.0 can install
-          echo "--> Downgrading setuptools for legacy compatibility..."
-          pip install "setuptools<60.0.0" wheel
-          
-          # 1. Install SAFE requirements
+          # 1. Install SAFE requirements (Gym 0.23.1)
+          # No manual hacks needed anymore!
           pip install -r requirements.txt
           
           # 2. Install the Project
