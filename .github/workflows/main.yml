@@ -16,18 +16,6 @@ jobs:
         working-directory: ${{ github.workspace }}
 
     steps:
-      # --- 0. SETUP & DISK SPACE ---
-      # Critical for ML repos: Frees up ~30GB to prevent "No space left on device" errors
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          docker-images: true
-          swap-storage: false
 
       - name: Checkout Repository
         uses: actions/checkout@v4
