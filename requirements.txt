@@ -1,4 +1,4 @@
--e git+https://github.com/Bhargavvvv2912/stable-baselines3_AURA@1316886b43d9dfeaa8c5b8f88960f106baaf7844#egg=stable_baselines3
+-e git+https://github.com/Bhargavvvv2912/stable-baselines3_AURA@53bf216ac1c303d953bebcb96bcdb917cd63cdfc#egg=stable_baselines3
 Jinja2==3.1.6
 MarkupSafe==3.0.3
 cloudpickle==3.1.2
